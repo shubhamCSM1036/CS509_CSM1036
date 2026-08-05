@@ -1,4 +1,4 @@
-#include "main_driver.h"
+#include "../include/main_driver.h"
 
 using namespace std;
 
@@ -16,20 +16,20 @@ void assignment1_func()
 
     switch (choice)
     {
-        case 1:
-            gemm_simple("tests/gemm/gemm_test_01.txt");
-            break;
+    case 1:
+        gemm_simple("tests/gemm/gemm_64.txt");
+        break;
 
-        case 2:
-            gemm_blocking("tests/gemm/gemm_test_01.txt");
-            break;
+    case 2:
+        gemm_blocking("tests/gemm/gemm_64.txt");
+        break;
 
-        case 3:
-            CSR_func();
-            break;
+    case 3:
+        runCSR();
+        break;
 
-        default:
-            cout << "Invalid choice.\n";
+    default:
+        cout << "Invalid choice.\n";
     }
 }
 

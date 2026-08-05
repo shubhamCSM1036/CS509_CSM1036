@@ -23,6 +23,7 @@ void printCSR(
     const CSRGraph& graph
 );
 
+
 void runCSR();
 
 #endif

@@ -5,7 +5,7 @@
 
 #include "../include/gemm_simple.h"
 #include "../include/gemm_blocking.h"
-#include "../include/csr_file.h"
+#include "../include/csr.h"
 
 using namespace std;
 
