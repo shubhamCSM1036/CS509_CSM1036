@@ -2,7 +2,7 @@
 
 using namespace std;
 
-void assignment1_func()
+void main_driver()
 {
     int choice;
 
@@ -33,9 +33,3 @@ void assignment1_func()
     }
 }
 
-int main()
-{
-    assignment1_func();
-
-    return 0;
-}
