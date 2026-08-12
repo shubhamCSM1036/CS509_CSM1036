@@ -11,4 +11,6 @@ bool bellmanFord(
     std::vector<long long>& distance
 );
 
+void runBellmanFord();
+
 #endif

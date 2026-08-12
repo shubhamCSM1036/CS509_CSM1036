@@ -7,4 +7,6 @@ bool floydWarshall(
     std::vector<std::vector<long long>>& distance
 );
 
+void runFloydWarshall();
+
 #endif
