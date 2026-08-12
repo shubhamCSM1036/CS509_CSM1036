@@ -86,12 +86,10 @@ void runBellmanFord()
 
     int source;
 
-    // File reading and CSR conversion are preprocessing.
     CSRGraph graph = readGraph(filename, &source);
 
     vector<long long> distance;
 
-    // Algorithm timing starts here.
     auto start = chrono::high_resolution_clock::now();
 
     bool success = bellmanFord(
@@ -152,13 +150,11 @@ void runFloydWarshall()
 
     vector<vector<long long>> distance;
 
-    // Matrix construction is preprocessing.
     if (!readFloydWarshallInput(filename, distance))
     {
         return;
     }
 
-    // Algorithm timing starts after matrix construction.
     auto start = chrono::high_resolution_clock::now();
 
     bool success = floydWarshall(distance);
@@ -210,7 +206,7 @@ void runFloydWarshall()
          << " ms\n";
 }
 
-int main()
+void assignment2_func()
 {
     cout << "===== CS509 - ASSIGNMENT 2 =====\n";
     cout << "1. Bellman-Ford\n";
@@ -234,6 +230,4 @@ int main()
         cout << "Invalid choice.\n";
         break;
     }
-
-    return 0;
 }

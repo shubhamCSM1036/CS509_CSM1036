@@ -52,8 +52,6 @@ bool bellmanFord(
         }
     }
 
-    // One additional pass for negative-cycle detection.
-    // Only cycles reachable from the source matter.
     for (int u = 0; u < vertices; u++)
     {
         if (distance[u] == INF)

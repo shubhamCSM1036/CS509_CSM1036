@@ -2,7 +2,7 @@
 
 using namespace std;
 
-void main_driver()
+void assignment1_func()
 {
     int choice;
 
@@ -25,11 +25,10 @@ void main_driver()
         break;
 
     case 3:
-        runCSR();
+        // runCSR();
         break;
 
     default:
         cout << "Invalid choice.\n";
     }
 }
-
