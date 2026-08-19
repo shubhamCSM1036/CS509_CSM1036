@@ -6,7 +6,11 @@
 
 using namespace std;
 
-CSRGraph readGraph(const string& filename, int* source)
+CSRGraph readGraph(
+    const string& filename,
+    int* source,
+    bool undirectedEdgeCount
+)
 {
     ifstream file(filename);
 
@@ -83,7 +87,14 @@ CSRGraph readGraph(const string& filename, int* source)
         graph.row_ptr.push_back(current_index);
     }
 
-    if (current_index != graph.edges)
+    int expected_edges = graph.edges;
+
+    if (undirectedEdgeCount)
+    {
+        expected_edges *= 2;
+    }
+
+    if (current_index != expected_edges)
     {
         cerr << "Edge count does not match input.\n";
         exit(1);

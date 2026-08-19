@@ -16,4 +16,6 @@ struct MSTResult
     long long totalWeight;
 };
 
+MSTResult kruskalMST(const CSRGraph& graph);
+
 #endif

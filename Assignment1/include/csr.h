@@ -16,7 +16,8 @@ struct CSRGraph
 
 CSRGraph readGraph(
     const std::string& filename,
-    int* source = nullptr
+    int* source = nullptr,
+    bool undirectedEdgeCount = false
 );
 
 void printCSR(const CSRGraph& graph);
