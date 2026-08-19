@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <chrono>
 
 #include "../include/assignment3.h"
 #include "../include/mst.h"
@@ -106,42 +107,75 @@ void assignment3_func()
     {
     case 1:
     {
+        auto start = chrono::high_resolution_clock::now();
+
         MSTResult result = kruskalMST(graph);
+
+        auto end = chrono::high_resolution_clock::now();
+
+        chrono::duration<double, milli> elapsed = end - start;
 
         printMSTResult(
             "Kruskal's MST",
             result
         );
+
+        cout << "Execution time: "
+            << elapsed.count()
+            << " ms\n";
 
         break;
     }
 
     case 2:
     {
+        auto start = chrono::high_resolution_clock::now();
+
         MSTResult result = primMST(graph);
+
+        auto end = chrono::high_resolution_clock::now();
+
+        chrono::duration<double, milli> elapsed = end - start;
 
         printMSTResult(
             "Prim's MST",
             result
         );
 
+        cout << "Execution time: "
+            << elapsed.count()
+            << " ms\n";
         break;
     }
 
     case 3:
     {
+        auto kruskalStart = chrono::high_resolution_clock::now();
+
         MSTResult kruskalResult = kruskalMST(graph);
+
+        auto kruskalEnd = chrono::high_resolution_clock::now();
+
+        chrono::duration<double, milli> kruskalTime =
+            kruskalEnd - kruskalStart;
+
+
+        auto primStart = chrono::high_resolution_clock::now();
+
         MSTResult primResult = primMST(graph);
 
-        printMSTResult(
-            "Kruskal's MST",
-            kruskalResult
-        );
+        auto primEnd = chrono::high_resolution_clock::now();
 
-        printMSTResult(
-            "Prim's MST",
-            primResult
-        );
+        chrono::duration<double, milli> primTime =
+            primEnd - primStart;
+
+        cout << "Kruskal execution time: "
+            << kruskalTime.count()
+            << " ms\n";
+
+        cout << "Prim execution time: "
+            << primTime.count()
+            << " ms\n";
 
         cout << "\nComparison:\n";
 
