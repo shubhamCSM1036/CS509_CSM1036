@@ -3,17 +3,19 @@ CXXFLAGS = -std=c++17 -Wall -Wextra -O2
 
 TARGET = common_wrapper
 
-INCLUDES = -IAssignment1/include -IAssignment2/include
+INCLUDES = -IAssignment1/include -IAssignment2/include -IAssignment3/include
 
 SOURCES = \
-	common_wrapper/common_wrapper.cpp \
-	Assignment1/driver/main_driver.cpp \
-	Assignment1/src/gemm_simple.cpp \
-	Assignment1/src/gemm_blocking.cpp \
-	Assignment1/src/csr.cpp \
-	Assignment2/driver/main.cpp \
-	Assignment2/src/bellman_ford.cpp \
-	Assignment2/src/floyd_warshall.cpp
+        common_wrapper/common_wrapper.cpp \
+        Assignment1/driver/main_driver.cpp \
+        Assignment1/src/gemm_simple.cpp \
+        Assignment1/src/gemm_blocking.cpp \
+        Assignment1/src/csr.cpp \
+        Assignment2/driver/main.cpp \
+        Assignment2/src/bellman_ford.cpp \
+        Assignment2/src/floyd_warshall.cpp \
+        Assignment3/driver/main.cpp \
+        Assignment3/src/mst.cpp
 
 OBJECTS = $(SOURCES:.cpp=.o)
 
