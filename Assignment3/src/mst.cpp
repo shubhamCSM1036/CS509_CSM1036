@@ -1,8 +1,9 @@
 #include "mst.h"
-
 #include <algorithm>
 #include <numeric>
 #include <vector>
+#include <functional>
+#include <queue>
 
 using namespace std;
 
@@ -97,6 +98,68 @@ MSTResult kruskalMST(const CSRGraph& graph)
             if (static_cast<int>(result.edges.size()) == graph.vertices - 1)
             {
                 break;
+            }
+        }
+    }
+
+    return result;
+}
+
+MSTResult primMST(const CSRGraph& graph)
+{
+    MSTResult result;
+    result.totalWeight = 0;
+
+    if (graph.vertices == 0)
+    {
+        return result;
+    }
+
+    vector<bool> visited(graph.vertices, false);
+
+    using PQEntry = pair<int, pair<int, int>>;
+
+    priority_queue<PQEntry, vector<PQEntry>, greater<PQEntry>> pq;
+
+    // Assignment 3 recommends vertex 0 as the starting vertex.
+    visited[0] = true;
+
+    for (int i = graph.row_ptr[0]; i < graph.row_ptr[1]; ++i)
+    {
+        int neighbour = graph.col_idx[i];
+        int weight = graph.values[i];
+
+        pq.push({weight, {0, neighbour}});
+    }
+
+    while (!pq.empty() &&
+           static_cast<int>(result.edges.size()) < graph.vertices - 1)
+    {
+        auto current = pq.top();
+        pq.pop();
+
+        int weight = current.first;
+        int u = current.second.first;
+        int v = current.second.second;
+
+        if (visited[v])
+        {
+            continue;
+        }
+
+        visited[v] = true;
+
+        result.edges.push_back({u, v, weight});
+        result.totalWeight += weight;
+
+        for (int i = graph.row_ptr[v]; i < graph.row_ptr[v + 1]; ++i)
+        {
+            int neighbour = graph.col_idx[i];
+            int edgeWeight = graph.values[i];
+
+            if (!visited[neighbour])
+            {
+                pq.push({edgeWeight, {v, neighbour}});
             }
         }
     }

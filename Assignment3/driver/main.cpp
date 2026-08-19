@@ -10,14 +10,14 @@ void assignment3_func()
     cout << "\n===== CS509 - ASSIGNMENT 3 =====\n";
 
     CSRGraph graph = readGraph(
-    "Assignment3/tests/mst/mst_test.txt",
-    nullptr,
-    true
+        "Assignment3/tests/mst/mst_test.txt",
+        nullptr,
+        true
     );
 
-    MSTResult result = kruskalMST(graph);
+    MSTResult result = primMST(graph);
 
-    cout << "\nAlgorithm: Kruskal's MST\n";
+    cout << "\nAlgorithm: Prim's MST\n";
     cout << "MST edges:\n";
 
     for (const MSTEdge& edge : result.edges)

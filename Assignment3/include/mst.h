@@ -17,5 +17,6 @@ struct MSTResult
 };
 
 MSTResult kruskalMST(const CSRGraph& graph);
+MSTResult primMST(const CSRGraph& graph);
 
 #endif
