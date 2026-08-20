@@ -1,167 +1,179 @@
-# CS509 – Assignment 1
+# CS509 – Software Lab
 
-**Name:** Shubham Kohli
-
-**Entry Number:** 2026CSM1036
-
----
+This repository contains the implementations and test cases for the CS509 Software Lab assignments.
 
 ## Repository Structure
 
 ```text
-Assignment1/
+CS509_CSM1036/
 │
-├── common_wrapper.cpp
+├── README.md
 │
-├── include/
-│   ├── main_driver.h
-│   ├── gemm_simple.h
-│   ├── gemm_blocking.h
-│   └── csr.h
+├── common_wrapper/
+│   └── common_wrapper.cpp
 │
-├── driver/
-│   └── main_driver.cpp
+├── Assignment1/
+│   ├── README.md
+│   ├── include/
+│   ├── driver/
+│   ├── src/
+│   └── tests/
 │
-├── src/
-│   ├── gemm_simple.cpp
-│   ├── gemm_blocking.cpp
-│   └── csr.cpp
+├── Assignment2/
+│   ├── README.md
+│   ├── include/
+│   ├── driver/
+│   ├── src/
+│   └── tests/
 │
-├── tests/
-│   ├── gemm/
-│   └── csr/
-│
-├── outputs/
-├── Makefile
-└── README.md
+└── Assignment3/
+    ├── README.md
+    ├── include/
+    ├── driver/
+    ├── src/
+    └── tests/
 ```
 
 ---
 
-# Compilation and Execution Instructions
+## Assignments
 
-### Step 1
+### Assignment 1
 
-Navigate to the project directory.
+Includes:
+
+* Simple GEMM
+* Blocking GEMM
+* CSR representation
+
+### Assignment 2
+
+Includes the algorithms and implementations completed for the second assignment.
+
+### Assignment 3
+
+Includes the algorithms and implementations completed for the third assignment.
+
+---
+
+## Compilation
+
+The repository uses a common wrapper to access all three assignments.
+
+From the repository root, compile the project using the project's build configuration:
 
 ```bash
-cd Assignment1
+make
 ```
+
+If the project is being compiled manually, use the source files and include directories corresponding to the assignment being tested.
 
 ---
 
-### Step 2
+## Execution
 
-Compile the project.
+After compilation, run the generated executable:
+
+### Linux / macOS
 
 ```bash
-g++ common_wrapper.cpp driver/main_driver.cpp src/gemm_simple.cpp src/gemm_blocking.cpp src/csr.cpp -o assignment1.exe
+./assignment.exe
 ```
 
----
+### Windows PowerShell
 
-### Step 3
-
-Execute the program.
-
-```bash
-./assignment1.exe
+```powershell
+.\assignment.exe
 ```
 
----
-
-## Program Menu
+The common wrapper displays:
 
 ```text
-===== MENU =====
-
+===== CS509 LAB WRAPPER =====
 1. Assignment 1
+2. Assignment 2
+3. Assignment 3
 0. Exit
 ```
 
+Select the required assignment from the menu.
+
 ---
 
-## Assignment 1 Menu
+## Assignment 1
+
+Selecting Assignment 1 opens:
 
 ```text
 ===== ASSIGNMENT 1 =====
-
 1. GEMM Simple
 2. GEMM Blocking
 3. CSR Representation
 ```
 
----
+GEMM test files are selected through the program menu.
 
-## Important Notes
+Available GEMM tests:
 
-- Only algorithm execution time has been measured.
-- File reading, parsing, and preprocessing are excluded from the reported execution time.
-- Input files are currently specified directly in the source code.
-- The same test files are used for comparing the simple and blocking implementations.
+```text
+gemm_64.txt
+gemm_128.txt
+gemm_256.txt
+gemm_512.txt
+gemm_1024.txt
+```
 
----
+CSR test files are also selected through the program menu.
 
-# GEMM Results
+Available CSR tests:
 
-| Test File | Matrix Size | Expected Output | Actual Output | Simple Time (ms) | Blocking Time (ms) | Block Size | Status |
-|------------|-------------|-----------------|-----------------|------------------|--------------------|-------------|---------|
-| gemm_64.txt | 64 × 64 | Result matrix | Result matrix | 0.812 | 0.846 | 4 | Pass |
-| gemm_128.txt | 128 × 128 | Result matrix | Result matrix | 7.012 | 2.547 | 8 | Pass |
-| gemm_256.txt | 256 × 256 | Result matrix | Result matrix | 41.384 | 36.821 | 16 | Pass |
-| gemm_512.txt | 512 × 512 | Result matrix | Result matrix | 274.192 | 221.514 | 32 | Pass |
-| gemm_1024.txt | 1024 × 1024 | Result matrix | Result matrix | 1492.573 | 1116.932 | 64 | Pass |
-
----
-
-# CSR Results
-
-| Test File | Vertices | Edges | Output | Status |
-|------------|-----------|--------|---------|---------|
-| csr_test_01.txt | 5 | 6 | row_ptr, col_idx, values | Pass |
-| csr_test_02.txt | 10 | 15 | row_ptr, col_idx, values | Pass |
-| csr_test_03.txt | 100 | 220 | row_ptr, col_idx, values | Pass |
+```text
+csr_10.txt
+csr_100.txt
+csr_10000.txt
+csr_50000.txt
+csr_100000.txt
+```
 
 ---
 
-# Performance Analysis
+## Input Files
 
-## 1. Scalability
+Each assignment maintains its test inputs inside its respective `tests/` directory.
 
-As the input size increases, the blocking implementation becomes increasingly efficient because of improved cache utilization and better memory access patterns.
+```text
+Assignment1/tests/
+├── gemm/
+└── csr/
 
-For the largest test case (`1024 × 1024`), the blocking implementation required less execution time than the simple implementation.
+Assignment2/tests/
 
----
+Assignment3/tests/
+```
 
-## 2. Behaviour for Smaller Inputs
-
-For smaller matrices, the overhead associated with block management can outweigh the benefits of the blocking strategy.
-
-Consequently, the simple implementation occasionally performs slightly better.
-
----
-
-## 3. Effect of Block Size
-
-The choice of block size has a significant influence on performance.
-
-Very small blocks increase loop overhead, whereas excessively large blocks reduce cache efficiency. Selecting an appropriate block size is therefore essential.
+Input files are read by the corresponding assignment driver before the selected algorithm is executed.
 
 ---
 
-## Conclusion
+## Execution Timing
 
-Both GEMM implementations produced identical result matrices for every test case.
+Algorithm execution time is measured separately from input preparation.
 
-The blocking approach proved to be more suitable for medium-sized and large matrices, while the simple approach remained effective for smaller inputs.
+File reading, input parsing, preprocessing, CSR conversion, and result printing are not included in the reported algorithm execution time where applicable.
+
+This allows the execution times of different implementations to be compared fairly.
+
+---
+
+## Notes
+
+* Each assignment has its own implementation and test files.
+* Assignment-specific details and results are maintained in the respective assignment directories.
+* The common wrapper provides a single entry point for running the assignments.
+* Shared components used by multiple assignments should be modified carefully to preserve compatibility between assignments.
 
 ---
 
 ## GitHub Repository
 
-Add your repository link here.
-
-```text
-https://github.com/username/repository_name
-```
+[CS509_CSM1036](https://github.com/shubhamCSM1036/CS509_CSM1036)

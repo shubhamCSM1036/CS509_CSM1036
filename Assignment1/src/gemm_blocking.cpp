@@ -2,7 +2,7 @@
 
 using namespace std;
 
-const int tile_size = 3;
+const int tile_size = 32;
 
 void gemm_blocking(string filename)
 {
@@ -18,14 +18,14 @@ void gemm_blocking(string filename)
 
     file >> row1 >> common >> col2;
 
-    vector<vector<int>> matrix1(
+    vector<vector<long long>> matrix1(
         row1,
-        vector<int>(common, 0)
+        vector<long long>(common, 0)
     );
 
-    vector<vector<int>> matrix2(
+    vector<vector<long long>> matrix2(
         common,
-        vector<int>(col2, 0)
+        vector<long long>(col2, 0)
     );
 
     for (int i = 0; i < row1; i++)
@@ -46,9 +46,9 @@ void gemm_blocking(string filename)
 
     file.close();
 
-    vector<vector<int>> result(
+    vector<vector<long long>> result(
         row1,
-        vector<int>(col2, 0)
+        vector<long long>(col2, 0)
     );
 
     auto start = chrono::high_resolution_clock::now();
